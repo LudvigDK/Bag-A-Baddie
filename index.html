@@ -1,13 +1,19 @@
 <head>
-    <link rel="stylesheet" href="config.css">
-    <link rel="stylesheet" href="base.css">
-    <link rel="stylesheet" href="pages.css">
+    <link rel="stylesheet" href="css/config.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/pages.css">
 
-    <link rel="stylesheet" href="bar.css">
-    <link rel="stylesheet" href="girl.css">
+    <link rel="stylesheet" href="css/bar.css">
+    <link rel="stylesheet" href="css/girl.css">
 
-    <link rel="stylesheet" href="convo.css">
+    <link rel="stylesheet" href="css/convo.css">
 
+    <script src="js/secrets.js"></script>
+    <script type="module">
+        import OpenAI from "https://esm.sh/openai";
+
+        const OpenAI = new OpenAI({ apiKey: OPENAI_KEY, dangerouslyAllowBrowser: true });
+    </script>
 </head>
 <body>
     <section class="page hidden" id="game">
@@ -33,12 +39,12 @@
             <span></span>
         </div>
 
-        <script src="bars.js"></script>
+        <script src="js/bars.js"></script>
     </section>
     <section class="page hidden" id="end"></section>
     <section class="page" id="home">
         <a onclick="switchPage('game');loadBar(1)">Start game</a>
     </section>
 
-    <script src="pages.js"></script>
+    <script src="js/pages.js"></script>
 </body>
