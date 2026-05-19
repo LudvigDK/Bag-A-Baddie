@@ -2,15 +2,43 @@
     <link rel="stylesheet" href="config.css">
     <link rel="stylesheet" href="base.css">
     <link rel="stylesheet" href="pages.css">
+
+    <link rel="stylesheet" href="bar.css">
+    <link rel="stylesheet" href="girl.css">
+
+    <link rel="stylesheet" href="convo.css">
+
 </head>
 <body>
     <section class="page hidden" id="game">
-        <div class="bar" id="bar-1"></div>
-        <div class="bar hidden" id="bar-2"></div>
-        <div class="bar hidden" id="bar-3"></div>
+        <div class="bar hidden" id="bar-1">
+            <img class="bg" src="assets/bars/bar-1.png">
+            <div class="girl">
+                <img class="avatar" src="assets/characters/isolde.png">
+            </div>
+            <audio class="music" src="assets/music/bar-1.wav" loop></audio>
+        </div>
+        <div class="bar hidden" id="bar-2">
+            <audio class="music" src="assets/music/bar-1.wav" loop></audio>
+        </div>
+        <div class="bar hidden" id="bar-3">
+            <audio class="music" src="assets/music/bar-1.wav" loop></audio>
+        </div>
+
+        <div id="user-input">
+            <input type="text">
+            <a>Send</a>
+        </div>
+        <div class="ai-response">
+            <span></span>
+        </div>
+
+        <script src="bars.js"></script>
     </section>
     <section class="page hidden" id="end"></section>
     <section class="page" id="home">
-        <a onclick="shiftPage('game')"></a>
+        <a onclick="switchPage('game');loadBar(1)">Start game</a>
     </section>
+
+    <script src="pages.js"></script>
 </body>

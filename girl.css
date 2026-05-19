@@ -1,0 +1,20 @@
+.girl {
+    position: absolute;
+    width: 35vw;
+    bottom: 0;
+    left: 10vw;
+    animation: breath 2s ease-in-out infinite alternate;
+}
+
+.girl .avatar {
+    width: 100%;
+}
+
+@keyframes breath {
+    from {
+        transform: translateY(0px);
+    }
+    to {
+        transform: translateY(7px);
+    }
+}

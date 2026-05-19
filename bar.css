@@ -1,0 +1,25 @@
+.bar {
+    position: absolute;
+    inset: 0;
+}
+
+.bar .bg {
+    animation: beat 0.2439s linear infinite alternate; /* 0.4878s because song is 123bpm - 60 / 123 = 0.4878 */
+}
+
+@keyframes beat {
+    0% {
+        transform: scale(1);
+        filter: brightness(.8) blur(0px);
+    }
+    40% {
+        transform: scale(1);
+    }
+    70% {
+        filter: brightness(.8) blur(0px);
+    }
+    100% {
+        transform: scale(1.005);
+        filter: brightness(1.1) blur(1px);
+    }
+}
