@@ -14,6 +14,7 @@ function setActiveGirl(id) {
 function __submit_user_input__() {
     CONVO.push(USER_INPUT.value)
 
+    if (!confirm('Confirm openai api request')) return
     openai.responses.create({
         model: 'gpt-5.4-mini',
         reasoning: { effort: "low" },
