@@ -63,8 +63,3 @@
     width: 40vw;
     font-size: 1.4rem;
 }
-
-@keyframes typing {
-  from { width: 0; height: 0 }
-  to { width: 40vw;; height: fit-content }
-}

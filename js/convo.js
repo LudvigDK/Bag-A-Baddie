@@ -42,7 +42,6 @@ function __submit_user_input__() {
             }
         })
         AI_RESPONSE.textContent = resp.output_text
-        AI_RESPONSE.style.animation = 'typing 5s steps(20)'
     })
 
     USER_INPUT.value = "";
