@@ -33,6 +33,8 @@ function __submit_user_input__() {
     }).then(resp => {
         CONVO.push(...resp.output)
 
+        console.log(resp.output)
+
         resp.output.forEach(item => {
             if (item.type === 'function_call') {
                 if (item.name === 'reject_user') rejectUser()
@@ -40,7 +42,11 @@ function __submit_user_input__() {
             }
         })
         AI_RESPONSE.textContent = resp.output_text
+        AI_RESPONSE.style.animation = 'typing 5s steps(20)'
     })
+
+    USER_INPUT.value = "";
+    AI_RESPONSE.textContent = ""
 }
 
 USER_INPUT_FORM.addEventListener('submit', (e) => {

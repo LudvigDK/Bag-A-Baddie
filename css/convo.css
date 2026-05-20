@@ -16,7 +16,7 @@
                 0px 0px 15px #f85eba;
 
     display: grid;
-    grid-template-columns: auto 10vw;
+    grid-template-columns: auto 4rem;
 }
 
 #user-input input {
@@ -26,27 +26,45 @@
     height: 100%;
 
     padding-left: 15px;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
 
     color: white;
 }
 
-#user-input a {
+#user-input button {
+    all:unset;
+
+    font-family: "Prompt", sans-serif;
+    user-select: none; 
+
     position: relative;
     height: 100%;
     text-align: center;
     align-content: center;
 
-    font-size: 1.4rem;
+    font-size: 2rem;
     cursor: pointer;
     
     color: white;
+    box-sizing: border-box;
+    border-radius: 6px;
+    box-shadow: inset 0px 0px 8px #f85eba,
+                0px 0px 15px #f85eba;
 }
 
-
-
 #ai-response span {
+    overflow: hidden;
+    height: fit-content;
     color: white;
     z-index: 999;
     position: absolute;
+    top: 30%;
+    left: 40%;
+    width: 40vw;
+    font-size: 1.4rem;
+}
+
+@keyframes typing {
+  from { width: 0; height: 0 }
+  to { width: 40vw;; height: fit-content }
 }

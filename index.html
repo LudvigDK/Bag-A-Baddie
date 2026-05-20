@@ -8,16 +8,20 @@
 
     <link rel="stylesheet" href="css/convo.css">
 
-    <script src="js/secrets.js"></script>
-    <script src="js/character_data.js"></script>
-    <script src="js/tools_data.js"></script>
-    <script src="js/prompt.js"></script>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+    </style>
+
     <script type="module">
         import OpenAI from "https://esm.sh/openai"
 
         const oai = new OpenAI({ apiKey: OPENAI_KEY, dangerouslyAllowBrowser: true })
         window.openai = oai
     </script>
+    <script src="js/secrets.js"></script>
+    <script src="js/character_data.js"></script>
+    <script src="js/tools_data.js"></script>
+    <script src="js/prompt.js"></script>
 </head>
 <body>
     <section class="page hidden" id="game">
@@ -38,7 +42,7 @@
         <div id="convo">
             <form id="user-input">
                 <input type="text">
-                <button type="submit">Send</button>
+                <button type="submit">></button>
             </form>
             <div id="ai-response">
                 <span></span>
