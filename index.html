@@ -10,6 +10,7 @@
 
     <script src="js/secrets.js"></script>
     <script src="js/character_data.js"></script>
+    <script src="js/tools_data.js"></script>
     <script src="js/prompt.js"></script>
     <script type="module">
         import OpenAI from "https://esm.sh/openai"
@@ -35,14 +36,15 @@
         </div>
 
         <div id="convo">
-            <div id="user-input">
+            <form id="user-input">
                 <input type="text">
-                <a>Send</a>
-            </div>
-            <div class="ai-response">
+                <button type="submit">Send</button>
+            </form>
+            <div id="ai-response">
                 <span></span>
             </div>
         </div>
+        <script src="js/convo.js"></script>
         
 
         <script src="js/bars.js"></script>

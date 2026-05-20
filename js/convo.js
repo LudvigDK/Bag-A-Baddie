@@ -1,32 +1,54 @@
 const CONVO_CONTAINER = document.querySelector('#convo')
-const USER_INPUT = CONVO_CONTAINER.querySelector('.user-input > input')
-const SEND_BTN = CONVO_CONTAINER.querySelector('.user-input > a')
-const AI_RESPONSE = CONVO_CONTAINER.querySelector('.ai-response > span')
+const USER_INPUT_FORM = CONVO_CONTAINER.querySelector('#user-input')
+const USER_INPUT = CONVO_CONTAINER.querySelector('#user-input > input')
+const AI_RESPONSE = CONVO_CONTAINER.querySelector('#ai-response > span')
 
 let CONVO = []
 
 function setActiveGirl(id) {
     CONVO = [
-        { user: 'system', content: getCharacterPrompt('isolde') }
+        { role: 'system', content: getCharacterPrompt(id) }
     ]
 }
 
-function __submit_user_input__() {
-    CONVO.push(USER_INPUT.value)
+function rejectUser() {
+    switchPage('end')
+    alert('You have been rejected')
+}
+function giveNumber() {
+    switchPage('end')
+    alert('You got her number')
+}
 
+function __submit_user_input__() {
     if (!confirm('Confirm openai api request')) return
+
+    CONVO.push({ role: 'user', content: USER_INPUT.value })
+
     openai.responses.create({
         model: 'gpt-5.4-mini',
         reasoning: { effort: "low" },
-        TOOLS,
-        CONVO
+        tools: TOOLS,
+        input: CONVO
     }).then(resp => {
-        CONVO.push(resp.output)
+        CONVO.push(...resp.output)
+
+        resp.output.forEach(item => {
+            if (item.type === 'function_call') {
+                if (item.name === 'reject_user') rejectUser()
+                if (item.name === 'give_number') giveNumber()
+            }
+        })
         AI_RESPONSE.textContent = resp.output_text
     })
 }
 
-
-[USER_INPUT, SEND_BTN].forEach(e => {
-    e.addEventListener('click', __submit_user_input__)
+USER_INPUT_FORM.addEventListener('submit', (e) => {
+    e.preventDefault()
+    __submit_user_input__()
 })
+
+
+
+// DEBUG CODE, REMOVE AT PRODUCTION
+setActiveGirl('isolde')
