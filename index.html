@@ -10,10 +10,10 @@
 
     <script src="js/secrets.js"></script>
     <script type="module">
-        import OpenAI from "https://esm.sh/openai";
+        import OpenAI from "https://esm.sh/openai"
 
-        const oai = new OpenAI({ apiKey: OPENAI_KEY, dangerouslyAllowBrowser: true });
-        window.OpenAI = oai
+        const oai = new OpenAI({ apiKey: OPENAI_KEY, dangerouslyAllowBrowser: true })
+        window.openai = oai
     </script>
 </head>
 <body>
@@ -32,13 +32,16 @@
             <audio class="music" src="assets/music/bar-1.wav" loop></audio>
         </div>
 
-        <div id="user-input">
-            <input type="text">
-            <a>Send</a>
+        <div id="convo">
+            <div id="user-input">
+                <input type="text">
+                <a>Send</a>
+            </div>
+            <div class="ai-response">
+                <span></span>
+            </div>
         </div>
-        <div class="ai-response">
-            <span></span>
-        </div>
+        
 
         <script src="js/bars.js"></script>
     </section>
