@@ -66,4 +66,4 @@ USER_INPUT_FORM.addEventListener('submit', (e) => {
 })
 
 // DEBUG CODE, REMOVE AT PRODUCTION
-setActiveGirl('isolde')
+setActiveGirl('susanne')
