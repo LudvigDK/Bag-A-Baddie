@@ -32,6 +32,7 @@ function __submit_user_input__() {
 
     CONVO.push({ role: 'user', content: USER_INPUT.value })
 
+    USER_INPUT.disabled = true
     openai.responses.create({
         model: 'gpt-5.4-mini',
         reasoning: { effort: "low" },
@@ -40,9 +41,8 @@ function __submit_user_input__() {
     }).then(resp => {
         CONVO.push(...resp.output)
 
-        console.log(resp.output)
-
         AI_RESPONSE.textContent = resp.output_text
+        USER_INPUT.disabled = false
         
         resp.output.forEach(item => {
             if (item.type === 'function_call') {
