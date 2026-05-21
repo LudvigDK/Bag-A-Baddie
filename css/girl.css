@@ -1,6 +1,6 @@
 .girl {
     position: absolute;
-    width: 35vw;
+    width: 75vh;
     bottom: 0;
     left: 10vw;
     animation: breath 2s ease-in-out infinite alternate;
