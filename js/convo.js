@@ -11,12 +11,16 @@ function setActiveGirl(id) {
     ]
 }
 
-function rejectUser() {
+function rejectUser(item) {
     switchPage('end')
+    const args = JSON.parse(item.arguments);
+    AI_RESPONSE.textContent = args.message
     alert('You have been rejected')
 }
-function giveNumber() {
+function giveNumber(item) {
     switchPage('end')
+    const args = JSON.parse(item.arguments);
+    AI_RESPONSE.textContent = args.message
     alert('You got her number')
 }
 
@@ -35,13 +39,14 @@ function __submit_user_input__() {
 
         console.log(resp.output)
 
+        AI_RESPONSE.textContent = resp.output_text
+        
         resp.output.forEach(item => {
             if (item.type === 'function_call') {
-                if (item.name === 'reject_user') rejectUser()
-                if (item.name === 'give_number') giveNumber()
+                if (item.name === 'reject_user') rejectUser(item)
+                if (item.name === 'give_number') giveNumber(item)
             }
         })
-        AI_RESPONSE.textContent = resp.output_text
     })
 
     USER_INPUT.value = "";
