@@ -1,4 +1,4 @@
-.girl {
+.bar > .girl {
     position: absolute;
     width: 75vh;
     bottom: 0;
@@ -6,7 +6,7 @@
     animation: breath 2s ease-in-out infinite alternate;
 }
 
-.girl .avatar {
+.bar > .girl .avatar {
     width: 100%;
 }
 

@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="css/game.css">
     <link rel="stylesheet" href="css/girl.css">
+    <link rel="stylesheet" href="css/girl-selection.css">
 
     <link rel="stylesheet" href="css/convo.css">
 
@@ -23,24 +24,18 @@
     <script src="js/secrets.js"></script>
     <script src="js/character_data.js"></script>
     <script src="js/tools_data.js"></script>
+    <script src="js/girl_options_data.js"></script>
+    <script src="js/base.js"></script>
     <script src="js/prompt.js"></script>
 </head>
 <body>
     <section class="page hidden" id="game">
-        <div class="hidden" id="girl-selection">
-            <img class="bg" src="assets/bars/bar-1.png">
-        </div>
         <div class="bar hidden" id="bar-1">
             <img class="bg" src="assets/bars/bar-1.png">
+            <div id="girl-selection"></div>
             <div class="girl">
-                <img class="avatar" id="avatar" src="">
+                <img class="avatar" src="">
             </div>
-            <audio class="music" src="assets/music/bar-1.wav" loop></audio>
-        </div>
-        <div class="bar hidden" id="bar-2">
-            <audio class="music" src="assets/music/bar-1.wav" loop></audio>
-        </div>
-        <div class="bar hidden" id="bar-3">
             <audio class="music" src="assets/music/bar-1.wav" loop></audio>
         </div>
 
@@ -76,7 +71,7 @@
                     openai_input.value = window.localStorage.getItem('openai')
                 })()
             </script>
-            <a id="start-btn" onclick="switchPage('game');loadBar(1)">Start</a>
+            <a id="start-btn" onclick="switchPage('game');loadBar(1);populateBars()">Start</a>
         </div>
     </section>
 

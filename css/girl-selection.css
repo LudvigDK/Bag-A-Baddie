@@ -1,0 +1,19 @@
+#girl-selection > .girl {
+    position: absolute;
+    width: 40vh;
+    bottom: 0;
+}
+#girl-selection > .girl .avatar {
+    width: 100%;
+}
+
+#girl-selection #girl-1 {
+    left: 10vw;
+}
+#girl-selection #girl-2 {
+    left: 50vw;
+    transform: translateX(-50%);
+}
+#girl-selection #girl-3 {
+    right: 10vw;
+}

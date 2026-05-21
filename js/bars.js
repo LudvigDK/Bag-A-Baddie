@@ -1,11 +1,15 @@
 const bars = document.querySelectorAll('.bar')
 let currentBar = 1
 
+const girl_selection_html_template = `
+<a id="girl-{index}" class="girl" onclick="setActiveGirl('{gid}')">
+    <img class="avatar" src="{avatar}">
+</a>
+`
+
 function loadBar(index) {
     bars.forEach(b => {
         b.classList.toggle('hidden', b.id !== `bar-${index}`)
-        console.log(b)
-        console.log( b.querySelector('.music'))
         if (b.id !== `bar-${index}`)
             b.querySelector('.music').pause()
         else
@@ -36,4 +40,20 @@ function prevBar() {
             b.querySelector('.music').play()
     });
     return true
+}
+
+function populateBars() {
+    let local_girls = GIRLS
+    bars.forEach(b => {
+        const girl_selection = b.querySelector('#girl-selection')
+        girl_selection.innerHTML = ''
+        for (let index = 1; index <= 3; index++) {
+            let girl = local_girls.pop(Math.floor(Math.random() * local_girls.length))
+            girl_selection.innerHTML += format(girl_selection_html_template, {
+                index: index,
+                gid: girl.gid,
+                avatar: girl.avatar
+            })
+        }
+    });
 }
