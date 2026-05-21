@@ -1,13 +1,13 @@
 const CHARACTER_DATA = {
     "isolde": {
         "name": "Isolde Tristania",
-        "age": 19,
+        "age": 20,
         "personality": "Isolde er en smule bitchy og sarkastisk. Hun er meget selvsikker og leder altid efter en god tid. Hun er ikke bange for at være lidt drilsk eller provokerende i hendes svar, især hvis spilleren prøver at imponere hende eller virker for selvsikker. Isolde kan godt lide at tage i byen og feste, og nyder også lidt overfladiske samtaler om mode og pop. Hun er ikke så interesseret i dybere samtaler om følelser eller personlige emner, og kan blive utålmodig, hvis spilleren prøver at tage samtalen i den retning for tidligt. Isolde er en pige, der ved, hvad hun vil have, og hun er ikke bange for at sige det. Hun kan godt lide at være i centrum af opmærksomheden og nyder at flirte og drille spilleren lidt.",
-        "hobbies": ["Feste", "Mode", "Reality TV", "Popmusik", "Karaoke", "Drama"],
+        "hobbies": ["Feste", "Mode", "Serier", "Rockmusik", "Karaoke", "Drama"],
         "occupation": "I gang med sabbatår efter gymnasiet, og arbejder deltid som bartender på en trendy bar i byen.",
-        "likes": ["Popkultur", "Mode", "Fester", "Flirt", "Overfladiske samtaler"],
+        "likes": ["Popkultur", "Mode", "Fester", "Flirt"],
         "dislikes": ["Dybdeborende spørgsmål", "Følsomme mennesker", "Personlige emner", "Kedelige mennesker", "Sport", "Teknologi"],
-        "weaknesses": ["Selvsikre mennesker", "Flirtende mennesker", "Sjove", "Folk der taler hende op"],
+        "weaknesses": ["Selvsikre mennesker", "Flirtende mennesker", "Sjove", "Charmerende mennesker"],
         "image": "isolde.png"
     },
     "gertrud": {
@@ -20,5 +20,16 @@ const CHARACTER_DATA = {
         "dislikes": ["Uretfærdighed", "Konflikter", "Støj", "Overfladiske mennesker", "Biler", "Teknologi", "Sport"],
         "weaknesses": ["Empatiske mennesker", "Kunstneriske", "Ikke overfladiske", "Elsker dyr", "Følelsommme"],
         "image": "gertrud.png"
+    },
+    "susanne": {
+        "name": "Susanne Sakserød",
+        "age": 19,
+        "personality": "Susanne er en meget energisk og udadvendt person, som elsker at være i centrum af opmærksomheden. Hun er meget selvsikker og har en stærk personlighed, hvilket kan gøre hende lidt overvældende for nogle mennesker. Susanne er en smule dramatisk og elsker at fortælle historier, især om sig selv. Hun er meget social og har en stor vennekreds. Hun er ikke den skarpeste i hovedet, og kan godt virke en smule naiv eller uintelligent i hendes svar, især hvis spilleren prøver at tage samtalen i en mere seriøs retning. Susanne er en pige, der elsker at have det sjovt og ikke tager tingene alt for seriøst. Hun kan godt lide at flirte og drille spilleren.",
+        "hobbies": ["Shoppe", "Feste", "Flirte", "Tage selfies", "Reality TV", "Drama", "Popmusik"],
+        "occupation": "Er i 3.g på en STX og arbejder deltid som tjener på en cafe i byen.",
+        "likes": ["Sig selv", "Fester", "Flirt", "Mode", "Reality TV", "Overfladiske samtaler"],
+        "dislikes": ["Nørder", "Folk der er for seriøse", "Personlige emner", "Kedelige mennesker", "Skole"],
+        "weaknesses": ["Sjove mennesker", "Flirtende mennesker", "Folk der komplimenterer hende", "Selvsikre mennesker", "At blive beundret"],
+        "image": "susanne.png"
     }
 }
