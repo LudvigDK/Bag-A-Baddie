@@ -4,9 +4,12 @@
     opacity: 1;
     pointer-events: all;
     
-    transition: opacity .3s ease-in-out;
+    transition: opacity .3s ease-in-out, transform .4s ease-in-out;
+    transform: translateY(0);
+    will-change: transform;
 }
 .page.hidden {
+    transform: translateY(100%);
     opacity: 0;
     pointer-events: none;
 }
