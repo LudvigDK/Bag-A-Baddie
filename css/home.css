@@ -17,6 +17,33 @@
 
 #home h1 img {
     width: 100%;
+    animation:  logo-move 3s ease-in-out alternate infinite,
+                logo-rotate 4s ease-in-out alternate infinite,
+                logo-scale 2s ease-in-out alternate infinite;
+}
+@keyframes logo-move {
+    from {
+        translate: 0 4px;
+    }
+    to {
+        translate: 0 -4px;
+    }
+}
+@keyframes logo-rotate {
+    from {
+        rotate: 2deg;
+    }
+    to {
+        rotate: -2deg;
+    }
+}
+@keyframes logo-scale {
+    from {
+        scale: .98;
+    }
+    to {
+        scale: 1.02;
+    }
 }
 
 #home #menus {

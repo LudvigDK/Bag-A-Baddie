@@ -75,6 +75,15 @@
             </script>
             <a id="start-btn" onclick="switchPage('game');loadBar(1);populateBars()">Start</a>
         </div>
+        <audio class="music" src="assets/music/home.wav" loop></audio>
+        <script>
+            const script = document.currentScript
+            document.addEventListener('click', () => {
+                const audio = script.previousElementSibling;
+                audio.volume = 0.4;
+                audio.play();
+            }, { once: true })
+        </script>
     </section>
 
     <script src="js/pages.js"></script>

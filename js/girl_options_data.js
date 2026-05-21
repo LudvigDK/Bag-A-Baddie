@@ -13,5 +13,15 @@ const GIRLS = [
         gid: 'susanne',
         name: 'Susanne',
         avatar: 'assets/characters/susanne.png'
+    },
+    {
+        gid: 'kismet',
+        name: 'Kismet',
+        avatar: 'assets/characters/kismet.png'
+    },
+    {
+        gid: 'zuri',
+        name: 'Zuri',
+        avatar: 'assets/characters/zuri.png'
     }
 ]

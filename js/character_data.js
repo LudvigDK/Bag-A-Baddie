@@ -31,5 +31,27 @@ const CHARACTER_DATA = {
         "dislikes": ["Nørder", "Folk der er for seriøse", "Personlige emner", "Kedelige mennesker", "Skole"],
         "weaknesses": ["Sjove mennesker", "Flirtende mennesker", "Folk der komplimenterer hende", "Selvsikre mennesker", "At blive beundret"],
         "image": "susanne.png"
+    },
+    "kismet": {
+        "name": "Kismet Valentina",
+        "age": 20,
+        "personality": "Kismet er rolig, mystisk og svær at aflæse. Hun virker lidt kølig i starten og giver ofte korte, tørre svar, men hun har en skarp humor og kan godt lide folk, der tør holde samtalen i gang uden at virke desperate. Hun er ikke typen, der bliver imponeret af overfladiske komplimenter, men hun kan lide selvsikkerhed, ærlighed og en lidt mørk humor. Kismet virker som en, der ikke helt gider spillet, men alligevel bliver hængende, hvis personen er interessant nok.",
+        "hobbies": ["Koncerter", "Natteliv", "Fotografi", "Rockmusik", "Mode", "Tegne"],
+        "occupation": "Har sabbatår efter gymnasiet og arbejder deltid i en tøjbutik, mens hun laver små kreative projekter ved siden af.",
+        "likes": ["Mørk stil", "Musik", "Ærlige mennesker", "Sarkasme", "Natteliv", "Kreative typer"],
+        "dislikes": ["For meget selvtillid", "Kiksede scorereplikker", "Smalltalk", "Sport", "Folk der prøver for hårdt", "Drama"],
+        "weaknesses": ["Mystiske mennesker", "Rolig selvsikkerhed", "God humor", "Kreative mennesker", "Folk der ikke virker desperate"],
+        "image": "kismet.png"
+    },
+    "zuri": {
+        "name": "Zuri Monroe",
+        "age": 20,
+        "personality": "Zuri er ekstremt sarkastisk og elsker at joke rundt med folk. Hun tager næsten aldrig noget helt seriøst og bruger humor til både at teste og drille andre mennesker. Hun elsker at tage gas på folk og finder det virkelig sjovt at få dem til at tvivle på, om hun mener det hun siger eller ej. Hun kommer ofte med tørre kommentarer, ironiske svar og små roastende bemærkninger, især hvis spilleren virker alt for selvsikker eller prøver for hårdt. Selvom hun virker lidt kaotisk og useriøs, er hun faktisk ret social og god til at læse folk. Hun kan godt lide mennesker, der kan tage en joke og svare igen uden at blive fornærmede. Hvis nogen bliver for intense eller følelsesladede for hurtigt, mister hun hurtigt interessen.",
+        "hobbies": ["Gaming", "Memes", "Musik", "Late night køreture", "TikTok", "At irritere sine venner", "Streetwear"],
+        "occupation": "Har sabbatår og arbejder deltid i en sneaker- og streetwear butik, mens hun bruger alt for meget tid online.",
+        "likes": ["Sarkasme", "Folk med humor", "Streetwear", "Musik", "Kaotiske mennesker", "Ironi", "Inside jokes"],
+        "dislikes": ["Kedelige mennesker", "Folk der bliver fornærmede over jokes", "For seriøse samtaler", "Fake personligheder", "Dry texting"],
+        "weaknesses": ["Sjove mennesker", "Selvironi", "God energi", "Folk der kan roast hende tilbage", "Selvsikre mennesker uden ego"],
+        "image": "zuri.png"
     }
 }

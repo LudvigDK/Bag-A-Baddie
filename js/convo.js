@@ -5,6 +5,25 @@ const AI_RESPONSE = CONVO_CONTAINER.querySelector('#ai-response > span')
 
 let CONVO = []
 
+let deleteOrTypeTextToken
+async function deleteText(e, interval) {
+    const token = Symbol()
+    deleteOrTypeTextToken = token
+    while (deleteOrTypeTextToken === token && e.textContent !== '') {
+        e.textContent = e.textContent.slice(0, -1)
+        await new Promise(resolve => setTimeout(resolve, interval))
+    }
+}
+async function typeText(e, text, interval) {
+    const token = Symbol()
+    deleteOrTypeTextToken = token
+    while (deleteOrTypeTextToken === token && text !== '') {
+        e.textContent = e.textContent + text[0]
+        text = text.slice(1)
+        await new Promise(resolve => setTimeout(resolve, interval))
+    }
+}
+
 function setActiveGirl(bar, gid) {
     CONVO = [
         { role: 'system', content: getCharacterPrompt(gid) }
@@ -41,8 +60,11 @@ function __submit_user_input__() {
     }).then(resp => {
         CONVO.push(...resp.output)
 
-        AI_RESPONSE.textContent = resp.output_text
+        deleteText(AI_RESPONSE, 5).then(() => {
+            typeText(AI_RESPONSE, resp.output_text, 15)
+        })
         USER_INPUT.disabled = false
+        USER_INPUT.focus()
         
         resp.output.forEach(item => {
             if (item.type === 'function_call') {
@@ -58,7 +80,7 @@ function __submit_user_input__() {
     })
 
     USER_INPUT.value = "";
-    AI_RESPONSE.textContent = ""
+    deleteText(AI_RESPONSE, 25)
 }
 
 USER_INPUT_FORM.addEventListener('submit', (e) => {
