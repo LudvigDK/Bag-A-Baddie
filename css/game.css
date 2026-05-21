@@ -1,8 +1,10 @@
+#girl-selection,
 .bar {
     position: absolute;
     inset: 0;
 }
 
+#girl-selection .bg,
 .bar .bg {
     position: absolute;
     width: 100%;

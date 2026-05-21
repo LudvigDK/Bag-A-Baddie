@@ -26,6 +26,11 @@
     transform: translate(-50%);
     width: 25vw;
     height: fit-content;
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
 }
 #home #menus #start-btn {
     box-sizing: border-box;
