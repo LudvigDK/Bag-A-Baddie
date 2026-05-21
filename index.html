@@ -5,7 +5,7 @@
 
     <link rel="stylesheet" href="css/home.css">
 
-    <link rel="stylesheet" href="css/bar.css">
+    <link rel="stylesheet" href="css/game.css">
     <link rel="stylesheet" href="css/girl.css">
 
     <link rel="stylesheet" href="css/convo.css">
@@ -27,6 +27,9 @@
 </head>
 <body>
     <section class="page hidden" id="game">
+        <div class="hidden" id="girl-selection">
+            <img class="bg" src="assets/bars/bar-1.png">
+        </div>
         <div class="bar hidden" id="bar-1">
             <img class="bg" src="assets/bars/bar-1.png">
             <div class="girl">
@@ -62,6 +65,7 @@
             <img src="assets/logo.png" alt="Bag A Baddie">
         </h1>
         <div id="menus">
+            <input type="text" id="openai-key" placeholder="OpenAI API Key" onchange="OPENAI_KEY=this.value;window.localStorage.setItem('openai', OPENAI_KEY)" onload="this.value=window.localStorage.getItem('openai')">
             <a id="start-btn" onclick="switchPage('game');loadBar(1)">Start</a>
         </div>
     </section>
