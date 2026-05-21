@@ -65,7 +65,17 @@
             <img src="assets/logo.png" alt="Bag A Baddie">
         </h1>
         <div id="menus">
-            <input type="text" id="openai-key" placeholder="OpenAI API Key" onchange="OPENAI_KEY=this.value;window.localStorage.setItem('openai', OPENAI_KEY)" onload="this.value=window.localStorage.getItem('openai')">
+            <input type="text" id="openai-key" placeholder="OpenAI API Key">
+            <script>
+                (()=>{
+                    const openai_input = document.querySelector('#openai-key')
+                    openai_input.addEventListener('change', ()=>{
+                        OPENAI_KEY = this.value;
+                        window.localStorage.setItem('openai', OPENAI_KEY)
+                    })
+                    openai_input.value = window.localStorage.getItem('openai')
+                })
+            </script>
             <a id="start-btn" onclick="switchPage('game');loadBar(1)">Start</a>
         </div>
     </section>
