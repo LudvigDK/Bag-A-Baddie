@@ -21,4 +21,4 @@ const CHARACTER_DATA = {
         "weaknesses": ["Empatiske mennesker", "Kunstneriske", "Ikke overfladiske", "Elsker dyr", "Følelsommme"],
         "image": "gertrud.png"
     }
-}   
+}
