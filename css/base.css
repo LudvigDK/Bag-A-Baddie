@@ -5,4 +5,11 @@ html, body {
     font-family: "Prompt", sans-serif;
 
     background-color: black;
+
+    overscroll-behavior-x: none;
+}
+
+* {
+    user-select: none;
+    -webkit-user-drag: none;
 }
