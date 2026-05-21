@@ -63,3 +63,13 @@
     width: 40vw;
     font-size: 1.4rem;
 }
+
+#convo {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s ease-out .4s;
+}
+#game:has(.bar.girl-selected:not(.hidden)) #convo {
+    opacity: 1;
+    pointer-events: all;
+}

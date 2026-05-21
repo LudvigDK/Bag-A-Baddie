@@ -2,15 +2,16 @@ const CONVO_CONTAINER = document.querySelector('#convo')
 const USER_INPUT_FORM = CONVO_CONTAINER.querySelector('#user-input')
 const USER_INPUT = CONVO_CONTAINER.querySelector('#user-input > input')
 const AI_RESPONSE = CONVO_CONTAINER.querySelector('#ai-response > span')
-const SELECTED_GIRL_AVATAR = document.querySelector('.bar > .girl > .avatar')
 
 let CONVO = []
 
-function setActiveGirl(id) {
+function setActiveGirl(bar, gid) {
     CONVO = [
-        { role: 'system', content: getCharacterPrompt(id) }
+        { role: 'system', content: getCharacterPrompt(gid) }
     ]
-    SELECTED_GIRL_AVATAR.src = `assets/characters/${id}.png`
+    const avatar = document.querySelector(`#${bar} > .girl > .avatar`)
+    avatar.src = `assets/characters/${gid}.png`
+    document.querySelector(`#${bar}`).classList.add('girl-selected')
 }
 
 function rejectUser(item) {
@@ -64,6 +65,3 @@ USER_INPUT_FORM.addEventListener('submit', (e) => {
     e.preventDefault()
     __submit_user_input__()
 })
-
-// DEBUG CODE, REMOVE AT PRODUCTION
-setActiveGirl('gertrud')

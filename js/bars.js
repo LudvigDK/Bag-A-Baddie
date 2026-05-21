@@ -2,7 +2,7 @@ const bars = document.querySelectorAll('.bar')
 let currentBar = 1
 
 const girl_selection_html_template = `
-<a id="girl-{index}" class="girl" onclick="setActiveGirl('{gid}')">
+<a id="girl-{index}" class="girl" onclick="setActiveGirl('{bar}', '{gid}')">
     <img class="avatar" src="{avatar}">
 </a>
 `
@@ -43,14 +43,15 @@ function prevBar() {
 }
 
 function populateBars() {
-    let local_girls = GIRLS
+    let local_girls = structuredClone(GIRLS)
     bars.forEach(b => {
         const girl_selection = b.querySelector('#girl-selection')
-        girl_selection.innerHTML = ''
+        girl_selection.querySelectorAll('.girl').forEach(e => { delete e })
         for (let index = 1; index <= 3; index++) {
-            let girl = local_girls.pop(Math.floor(Math.random() * local_girls.length))
+            let girl = local_girls.splice(Math.floor(Math.random() * local_girls.length), 1)[0]
             girl_selection.innerHTML += format(girl_selection_html_template, {
                 index: index,
+                bar: b.id,
                 gid: girl.gid,
                 avatar: girl.avatar
             })
