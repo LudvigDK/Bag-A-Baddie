@@ -47,6 +47,11 @@ function __submit_user_input__() {
             if (item.type === 'function_call') {
                 if (item.name === 'reject_user') rejectUser(item)
                 if (item.name === 'give_number') giveNumber(item)
+                CONVO.push({
+                    type: "function_call_output",
+                    call_id: item.call_id,
+                    output: "ok"
+                })
             }
         })
     })
