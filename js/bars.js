@@ -46,7 +46,7 @@ function populateBars() {
     let local_girls = structuredClone(GIRLS)
     bars.forEach(b => {
         const girl_selection = b.querySelector('#girl-selection')
-        girl_selection.querySelectorAll('.girl').forEach(e => { delete e })
+        girl_selection.querySelectorAll('.girl').forEach(e => { e.remove() })
         for (let index = 1; index <= 3; index++) {
             let girl = local_girls.splice(Math.floor(Math.random() * local_girls.length), 1)[0]
             girl_selection.innerHTML += format(girl_selection_html_template, {

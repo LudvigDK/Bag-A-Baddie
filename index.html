@@ -59,7 +59,7 @@
         async function getHighscores() {
             const q = query(
                 collection(db, "highscores"),
-                orderBy("score", "desc"),
+                orderBy("score", "asc"),
                 limit(10)
             )
             const snapshot = await getDocs(q)
@@ -70,7 +70,6 @@
         window.getHighscores = getHighscores
     </script>
 
-    <script src="js/secrets.js"></script>
     <script src="js/character_data.js"></script>
     <script src="js/tools_data.js"></script>
     <script src="js/girl_options_data.js"></script>
@@ -85,7 +84,7 @@
         <div class="bar hidden" id="bar-1">
             <img class="bg" src="assets/bars/bar-1.png">
 
-            <span id="timer"></span>
+            <span id="timer-container"><span id="timer">0</span> sek</span>
 
             <div id="girl-selection">
                 <h2 data-text="Hvem vil du score?">Hvem vil du score?</h2>
@@ -112,11 +111,11 @@
     </section>
     <section class="page hidden" id="end" data-init-script="initEnd">
         <img class="bg" src="assets/end-background.png">
-        <h2>Du blev <span id="result">...</span></h2>
+        <h2 id="result"></h2>
         <div id="stats">
-            <span class="stat">Du sendte: <span></span></span>
-            <span class="stat">Du brugte: <span></span></span>
-            <span id="score" class="stat">Samlet score: <span></span></span>
+            <span class="stat">Du sendte: <span id="messages"></span> beskeder</span>
+            <span class="stat">Du brugte: <span id="time"></span> sek</span>
+            <span id="score" class="stat">Samlet score: <span id="final-score"></span></span>
         </div>
         <div id="nav-btns">
             <a onclick="switchPage('game')">Spil igen</a>
@@ -145,9 +144,9 @@
                 (()=>{
                     const openai_input = document.querySelector('#openai-key')
                     openai_input.addEventListener('change', ()=>{
-                        OPENAI_KEY = openai_input.value;
-                        window.localStorage.setItem('openai', OPENAI_KEY)
-                        window.initOpenAI(OPENAI_KEY)
+                        window.OPENAI_KEY = openai_input.value;
+                        window.localStorage.setItem('openai', window.OPENAI_KEY)
+                        window.initOpenAI(window.OPENAI_KEY)
                     })
 
                     window.addEventListener('load', () => {
@@ -163,16 +162,18 @@
                 (()=>{
                     const name = document.querySelector('#name')
                     name.addEventListener('change', ()=>{
-                        NAME = this.value;
-                        window.localStorage.setItem('name', NAME)
+                        window.NAME = name.value;
+                        window.localStorage.setItem('name', window.NAME)
                     })
-                    name.value = window.localStorage.getItem('name')
+                    name.value = window.localStorage.getItem('name') || ''
+                    window.NAME = name.value;
                 })()
             </script>
             <a id="start-btn" onclick="switchPage('game')">Start</a>
         </div>
         <div id="highscores">
             <table>
+                <caption>Top Rizzlers</caption>
                 <thead>
                     <tr>
                         <th>Navn</th>

@@ -1,5 +1,6 @@
 function initGame() {
     loadBar(1)
     populateBars()
-    USER_MESSAGE_COUNT = 0
+    document.querySelector('#game #timer').textContent = 0
+    document.querySelector('#game .bar > .girl > .avatar').setAttribute('src', '')
 }

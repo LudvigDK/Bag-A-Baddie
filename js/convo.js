@@ -3,10 +3,15 @@ const USER_INPUT_FORM = CONVO_CONTAINER.querySelector('#user-input')
 const USER_INPUT = CONVO_CONTAINER.querySelector('#user-input > input')
 const AI_RESPONSE = CONVO_CONTAINER.querySelector('#ai-response > span')
 
+const GAME_TIMER = document.querySelector('#game #timer')
+
 let CONVO = []
 let USER_MESSAGE_COUNT
 let START_TIME
 let GAME_TIMER_UPDATER
+
+let RESULT
+let FINAL_MESSAGE
 
 let deleteOrTypeTextToken
 async function deleteText(e, interval) {
@@ -37,8 +42,9 @@ function setActiveGirl(bar, gid) {
 
     START_TIME = new Date()
     GAME_TIMER_UPDATER = setInterval(() => {
-        document.querySelector('#game #timer').textContent = Math.round((new Date() - START_TIME) / 1000)
+        GAME_TIMER.textContent = Math.round((new Date() - START_TIME) / 1000)
     }, 200);
+    USER_MESSAGE_COUNT = 0
 }
 
 function rejectUser(item) {
@@ -47,8 +53,9 @@ function rejectUser(item) {
         typeText(AI_RESPONSE, args.message, 15)
     })
     setTimeout(() => {
+        RESULT = 'failed'
+        FINAL_MESSAGE = args.message
         switchPage('end')
-        
     }, 3000);
 }
 function giveNumber(item) {
@@ -57,13 +64,15 @@ function giveNumber(item) {
         typeText(AI_RESPONSE, args.message, 15)
     })
     setTimeout(() => {
+        RESULT = 'success'
+        FINAL_MESSAGE = args.message
         switchPage('end')
-        
     }, 3000);
 }
 
 function __submit_user_input__() {
     CONVO.push({ role: 'user', content: USER_INPUT.value })
+    USER_MESSAGE_COUNT += 1
 
     USER_INPUT.disabled = true
     openai.responses.create({

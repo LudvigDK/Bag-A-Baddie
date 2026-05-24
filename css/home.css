@@ -82,3 +82,31 @@
 #home #menus #start-btn:hover {
     transform: scale(1.03);
 }
+
+#home #highscores table {
+    position: absolute;
+    width: 20vw;
+    right: 6vw;
+    top: 50%;
+    transform: translateY(-50%);
+
+    padding: 4px 10px 4px 10px;
+
+    background-color: #bc4ecd;
+    color: white;
+    text-align: center;
+
+    border-radius: 6px;
+}
+#home #highscores table caption {
+    font-size: 2rem;
+}
+
+#home #highscores table tbody td,
+#home #highscores table thead th {
+    padding-right: 5px;
+}
+#home #highscores table tbody td:last-child,
+#home #highscores table thead th:last-child {
+    padding-right: 0;
+}
