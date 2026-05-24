@@ -4,7 +4,9 @@ const USER_INPUT = CONVO_CONTAINER.querySelector('#user-input > input')
 const AI_RESPONSE = CONVO_CONTAINER.querySelector('#ai-response > span')
 
 let CONVO = []
-let USER_MESSAGE_COUNT = 0
+let USER_MESSAGE_COUNT
+let START_TIME
+let GAME_TIMER_UPDATER
 
 let deleteOrTypeTextToken
 async function deleteText(e, interval) {
@@ -32,6 +34,11 @@ function setActiveGirl(bar, gid) {
     const avatar = document.querySelector(`#${bar} > .girl > .avatar`)
     avatar.src = `assets/characters/${gid}.png`
     document.querySelector(`#${bar}`).classList.add('girl-selected')
+
+    START_TIME = new Date()
+    GAME_TIMER_UPDATER = setInterval(() => {
+        document.querySelector('#game #timer').textContent = Math.round((new Date() - START_TIME) / 1000)
+    }, 200);
 }
 
 function rejectUser(item) {

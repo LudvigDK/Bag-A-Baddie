@@ -6,17 +6,18 @@ function switchPage(pid) {
     });
 }
 
-function applyMuteState(container) {
+function applyPageLoadScripts(container) {
     const mute = container.classList.contains('hidden')
     container.querySelectorAll('audio').forEach(a => a.muted = mute)
+
+    if (container.classList.contains('hidden')) return
+    if (container.dataset.initScript) window[container.dataset.initScript]()
 }
 
-// Handle existing containers on load
-pages.forEach(applyMuteState)
+pages.forEach(applyPageLoadScripts)
 
-// Watch for class changes
 const observer = new MutationObserver(mutations => {
-    mutations.forEach(m => applyMuteState(m.target))
+    mutations.forEach(m => applyPageLoadScripts(m.target))
 })
 
 pages.forEach(container => {

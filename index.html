@@ -26,7 +26,49 @@
         }
         window.initOpenAI = initOpenAI
     </script>
-    <script type="module" src="db.js"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"
+        import { getFirestore, collection, addDoc, getDocs, query, orderBy, limit }
+            from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"
+
+        const firebaseConfig = {
+        apiKey: "AIzaSyCmjvm1duQeqh9G-P5BqQR8ev-W00J4Yjs",
+        authDomain: "bag-a-baddie.firebaseapp.com",
+        projectId: "bag-a-baddie",
+        storageBucket: "bag-a-baddie.firebasestorage.app",
+        messagingSenderId: "230030096772",
+        appId: "1:230030096772:web:84f2ae6ee2347cdae005d1"
+        }
+
+        const app = initializeApp(firebaseConfig)
+
+
+
+        const db = getFirestore(app)
+
+        async function submitScore(name, score, time, messages) {
+            await addDoc(collection(db, "highscores"), {
+                name: name,
+                score: score,
+                time: time,
+                messages: messages,
+                timestamp: Date.now()
+            })
+        }
+
+        async function getHighscores() {
+            const q = query(
+                collection(db, "highscores"),
+                orderBy("score", "desc"),
+                limit(10)
+            )
+            const snapshot = await getDocs(q)
+            return snapshot.docs.map(doc => doc.data())
+        }
+
+        window.submitScore = submitScore
+        window.getHighscores = getHighscores
+    </script>
 
     <script src="js/secrets.js"></script>
     <script src="js/character_data.js"></script>
@@ -35,11 +77,16 @@
     <script src="js/base.js"></script>
     <script src="js/prompt.js"></script>
     <script src="js/game.js"></script>
+    <script src="js/end.js"></script>
+    <script src="js/home.js"></script>
 </head>
 <body>
-    <section class="page hidden" id="game">
+    <section class="page hidden" id="game" data-init-script="initGame">
         <div class="bar hidden" id="bar-1">
             <img class="bg" src="assets/bars/bar-1.png">
+
+            <span id="timer"></span>
+
             <div id="girl-selection">
                 <h2 data-text="Hvem vil du score?">Hvem vil du score?</h2>
             </div>
@@ -63,7 +110,7 @@
 
         <script src="js/bars.js"></script>
     </section>
-    <section class="page" id="end">
+    <section class="page hidden" id="end" data-init-script="initEnd">
         <img class="bg" src="assets/end-background.png">
         <h2>Du blev <span id="result">...</span></h2>
         <div id="stats">
@@ -72,7 +119,7 @@
             <span id="score" class="stat">Samlet score: <span></span></span>
         </div>
         <div id="nav-btns">
-            <a onclick="startGame()">Spil igen</a>
+            <a onclick="switchPage('game')">Spil igen</a>
             <a onclick="switchPage('home')">Hjem</a>
         </div>
         <audio class="music" src="assets/music/home.wav" loop></audio>
@@ -87,7 +134,7 @@
             })()
         </script>
     </section>
-    <section class="page hidden" id="home">
+    <section class="page" id="home" data-init-script="initHome">
         <img class="bg" src="assets/home-background.png">
         <h1>
             <img src="assets/logo.png" alt="Bag A Baddie">
@@ -122,7 +169,20 @@
                     name.value = window.localStorage.getItem('name')
                 })()
             </script>
-            <a id="start-btn" onclick="startGame()">Start</a>
+            <a id="start-btn" onclick="switchPage('game')">Start</a>
+        </div>
+        <div id="highscores">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Navn</th>
+                        <th>Tid</th>
+                        <th>Beskeder</th>
+                        <th>Score</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
         </div>
         <audio class="music" src="assets/music/home.wav" loop></audio>
         <script>
