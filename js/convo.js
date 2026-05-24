@@ -4,6 +4,7 @@ const USER_INPUT = CONVO_CONTAINER.querySelector('#user-input > input')
 const AI_RESPONSE = CONVO_CONTAINER.querySelector('#ai-response > span')
 
 let CONVO = []
+let USER_MESSAGE_COUNT = 0
 
 let deleteOrTypeTextToken
 async function deleteText(e, interval) {
@@ -34,21 +35,27 @@ function setActiveGirl(bar, gid) {
 }
 
 function rejectUser(item) {
-    switchPage('end')
     const args = JSON.parse(item.arguments);
-    AI_RESPONSE.textContent = args.message
-    alert('You have been rejected')
+    deleteText(AI_RESPONSE, 5).then(() => {
+        typeText(AI_RESPONSE, args.message, 15)
+    })
+    setTimeout(() => {
+        switchPage('end')
+        
+    }, 3000);
 }
 function giveNumber(item) {
-    switchPage('end')
     const args = JSON.parse(item.arguments);
-    AI_RESPONSE.textContent = args.message
-    alert('You got her number')
+    deleteText(AI_RESPONSE, 5).then(() => {
+        typeText(AI_RESPONSE, args.message, 15)
+    })
+    setTimeout(() => {
+        switchPage('end')
+        
+    }, 3000);
 }
 
 function __submit_user_input__() {
-    if (!confirm('Confirm openai api request')) return
-
     CONVO.push({ role: 'user', content: USER_INPUT.value })
 
     USER_INPUT.disabled = true
@@ -60,12 +67,8 @@ function __submit_user_input__() {
     }).then(resp => {
         CONVO.push(...resp.output)
 
-        deleteText(AI_RESPONSE, 5).then(() => {
-            typeText(AI_RESPONSE, resp.output_text, 15)
-        })
-        USER_INPUT.disabled = false
-        USER_INPUT.focus()
-        
+        let calledTool = false
+
         resp.output.forEach(item => {
             if (item.type === 'function_call') {
                 if (item.name === 'reject_user') rejectUser(item)
@@ -75,8 +78,16 @@ function __submit_user_input__() {
                     call_id: item.call_id,
                     output: "ok"
                 })
+                calledTool = true
             }
-        })
+        }) 
+        if (!calledTool) 
+            deleteText(AI_RESPONSE, 5).then(() => {
+                typeText(AI_RESPONSE, resp.output_text, 15)
+            })
+
+        USER_INPUT.disabled = false
+        USER_INPUT.focus()
     })
 
     USER_INPUT.value = "";

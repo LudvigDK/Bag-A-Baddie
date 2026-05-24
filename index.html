@@ -5,6 +5,8 @@
 
     <link rel="stylesheet" href="css/home.css">
 
+    <link rel="stylesheet" href="css/end.css">
+
     <link rel="stylesheet" href="css/game.css">
     <link rel="stylesheet" href="css/girl.css">
     <link rel="stylesheet" href="css/girl-selection.css">
@@ -21,12 +23,15 @@
         const oai = new OpenAI({ apiKey: OPENAI_KEY, dangerouslyAllowBrowser: true })
         window.openai = oai
     </script>
+    <script type="module" src="db.js"></script>
+
     <script src="js/secrets.js"></script>
     <script src="js/character_data.js"></script>
     <script src="js/tools_data.js"></script>
     <script src="js/girl_options_data.js"></script>
     <script src="js/base.js"></script>
     <script src="js/prompt.js"></script>
+    <script src="js/game.js"></script>
 </head>
 <body>
     <section class="page hidden" id="game">
@@ -55,8 +60,31 @@
 
         <script src="js/bars.js"></script>
     </section>
-    <section class="page hidden" id="end"></section>
-    <section class="page" id="home">
+    <section class="page" id="end">
+        <img class="bg" src="assets/end-background.png">
+        <h2>Du blev <span id="result">...</span></h2>
+        <div id="stats">
+            <span class="stat">Du sendte: <span></span></span>
+            <span class="stat">Du brugte: <span></span></span>
+            <span id="score" class="stat">Samlet score: <span></span></span>
+        </div>
+        <div id="nav-btns">
+            <a onclick="startGame()">Spil igen</a>
+            <a onclick="switchPage('home')">Hjem</a>
+        </div>
+        <audio class="music" src="assets/music/home.wav" loop></audio>
+        <script>
+            (()=>{
+                const script = document.currentScript
+                document.addEventListener('click', () => {
+                    const audio = script.previousElementSibling;
+                    audio.volume = 0.4;
+                    audio.play();
+                }, { once: true })
+            })()
+        </script>
+    </section>
+    <section class="page hidden" id="home">
         <img class="bg" src="assets/home-background.png">
         <h1>
             <img src="assets/logo.png" alt="Bag A Baddie">
@@ -73,16 +101,29 @@
                     openai_input.value = window.localStorage.getItem('openai')
                 })()
             </script>
-            <a id="start-btn" onclick="switchPage('game');loadBar(1);populateBars()">Start</a>
+            <input type="text" id="name" placeholder="Dit navn">
+            <script>
+                (()=>{
+                    const name = document.querySelector('#name')
+                    name.addEventListener('change', ()=>{
+                        NAME = this.value;
+                        window.localStorage.setItem('name', NAME)
+                    })
+                    name.value = window.localStorage.getItem('name')
+                })()
+            </script>
+            <a id="start-btn" onclick="startGame()">Start</a>
         </div>
         <audio class="music" src="assets/music/home.wav" loop></audio>
         <script>
-            const script = document.currentScript
-            document.addEventListener('click', () => {
-                const audio = script.previousElementSibling;
-                audio.volume = 0.4;
-                audio.play();
-            }, { once: true })
+            (()=>{
+                const script = document.currentScript
+                document.addEventListener('click', () => {
+                    const audio = script.previousElementSibling;
+                    audio.volume = 0.4;
+                    audio.play();
+                }, { once: true })
+            })()
         </script>
     </section>
 
