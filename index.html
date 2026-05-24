@@ -20,8 +20,11 @@
     <script type="module">
         import OpenAI from "https://esm.sh/openai"
 
-        const oai = new OpenAI({ apiKey: OPENAI_KEY, dangerouslyAllowBrowser: true })
-        window.openai = oai
+        function initOpenAI(key) {
+            const oai = new OpenAI({ apiKey: key, dangerouslyAllowBrowser: true })
+            window.openai = oai
+        }
+        window.initOpenAI = initOpenAI
     </script>
     <script type="module" src="db.js"></script>
 
@@ -95,10 +98,17 @@
                 (()=>{
                     const openai_input = document.querySelector('#openai-key')
                     openai_input.addEventListener('change', ()=>{
-                        OPENAI_KEY = this.value;
+                        OPENAI_KEY = openai_input.value;
                         window.localStorage.setItem('openai', OPENAI_KEY)
+                        window.initOpenAI(OPENAI_KEY)
                     })
-                    openai_input.value = window.localStorage.getItem('openai')
+
+                    window.addEventListener('load', () => {
+                        openai_input.value = window.localStorage.getItem('openai') || ''
+                        if (openai_input.value && window.initOpenAI) {
+                            window.initOpenAI(openai_input.value)
+                        }
+                    })
                 })()
             </script>
             <input type="text" id="name" placeholder="Dit navn">

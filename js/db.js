@@ -22,8 +22,7 @@ async function submitScore(name, score, time, messages) {
         name: name,
         score: score,
         time: time,
-        messages: messages;
-
+        messages: messages,
         timestamp: Date.now()
     })
 }
